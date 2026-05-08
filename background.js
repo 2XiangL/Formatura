@@ -50,6 +50,8 @@ async function handleConversion(tabId, srcUrl, format) {
         showError('errorCrossOrigin');
       } else if (err.message === 'timeout') {
         showError('errorTimeout');
+      } else if (err.message === 'unsupportedFormat') {
+        showError('errorUnsupportedFormat');
       } else {
         showError('errorGeneric');
       }
@@ -88,6 +90,9 @@ async function fetchImageAsDataUrl(url) {
     }
 
     const contentType = response.headers.get('content-type') || '';
+    if (contentType.startsWith('image/svg+xml')) {
+      throw new Error('unsupportedFormat');
+    }
     if (!contentType.startsWith('image/') && !contentType.startsWith('application/octet-stream')) {
       throw new Error('Not an image');
     }
@@ -98,7 +103,7 @@ async function fetchImageAsDataUrl(url) {
     if (err.name === 'AbortError') {
       throw new Error('timeout');
     }
-    if (err.message === 'crossOrigin' || err.message === 'timeout' || err.message === 'httpError') {
+    if (err.message === 'crossOrigin' || err.message === 'timeout' || err.message === 'httpError' || err.message === 'unsupportedFormat') {
       throw err;
     }
     throw new Error('networkError');
