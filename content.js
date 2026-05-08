@@ -162,8 +162,13 @@ function triggerDownload(blob, filename) {
   document.body.appendChild(anchor);
   anchor.click();
 
-  requestAnimationFrame(() => {
-    document.body.removeChild(anchor);
+  let cleaned = false;
+  const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
+    anchor.remove();
     URL.revokeObjectURL(url);
-  });
+  };
+  requestAnimationFrame(cleanup);
+  setTimeout(cleanup, 1000);
 }
