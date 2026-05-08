@@ -129,5 +129,5 @@ async function showError(msgKey) {
     title: chrome.i18n.getMessage('extName'),
     message: msg,
     priority: 2
-  }).catch(() => {});
+  }).catch(err => { console.warn('Notification failed:', err); });
 }
