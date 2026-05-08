@@ -1,6 +1,7 @@
 const LOAD_TIMEOUT_MS = 10000;
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (sender.id !== chrome.runtime.id) return;
   if (message.action === 'convert') {
     handleConversion(message.imageData, message.format, message.srcUrl)
       .then(result => sendResponse(result))
