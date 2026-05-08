@@ -94,7 +94,7 @@ async function fetchImageAsDataUrl(url) {
       throw new Error('unsupportedFormat');
     }
     if (!contentType.startsWith('image/') && contentType !== 'application/octet-stream') {
-      throw new Error('Not an image');
+      throw new Error('unsupportedFormat');
     }
 
     const blob = await response.blob();
