@@ -84,7 +84,7 @@ async function fetchImageAsDataUrl(url) {
       if (response.status === 403 || response.status === 0) {
         throw new Error('crossOrigin');
       }
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error('httpError');
     }
 
     const contentType = response.headers.get('content-type') || '';
@@ -98,10 +98,10 @@ async function fetchImageAsDataUrl(url) {
     if (err.name === 'AbortError') {
       throw new Error('timeout');
     }
-    if (err.message === 'crossOrigin' || err.message === 'timeout') {
+    if (err.message === 'crossOrigin' || err.message === 'timeout' || err.message === 'httpError') {
       throw err;
     }
-    throw new Error('crossOrigin');
+    throw new Error('networkError');
   } finally {
     clearTimeout(timeoutId);
   }
