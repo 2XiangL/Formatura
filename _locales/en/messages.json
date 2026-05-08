@@ -31,11 +31,5 @@
   },
   "errorGeneric": {
     "message": "Image conversion failed, please try again"
-  },
-  "notificationSaved": {
-    "message": "Image saved"
-  },
-  "notificationFailed": {
-    "message": "Save failed"
   }
 }
