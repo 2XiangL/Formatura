@@ -93,7 +93,7 @@ async function fetchImageAsDataUrl(url) {
     if (contentType.startsWith('image/svg+xml')) {
       throw new Error('unsupportedFormat');
     }
-    if (!contentType.startsWith('image/') && contentType !== 'application/octet-stream') {
+    if (contentType && !contentType.startsWith('image/') && contentType !== 'application/octet-stream') {
       throw new Error('unsupportedFormat');
     }
 
