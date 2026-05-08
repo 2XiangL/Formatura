@@ -1,0 +1,41 @@
+{
+  "extName": {
+    "message": "图片格式转换保存"
+  },
+  "extShortName": {
+    "message": "格式转换"
+  },
+  "extDesc": {
+    "message": "右键菜单将网页图片保存为 JPG 或 PNG 格式，支持 WebP、AVIF 等现代格式自动转换。"
+  },
+  "menuParent": {
+    "message": "保存图片为..."
+  },
+  "menuSaveAsJpg": {
+    "message": "保存为 JPG"
+  },
+  "menuSaveAsPng": {
+    "message": "保存为 PNG"
+  },
+  "errorCrossOrigin": {
+    "message": "该图片受跨域限制，无法转换"
+  },
+  "errorTaintedCanvas": {
+    "message": "Canvas 被污染，无法导出图片"
+  },
+  "errorTimeout": {
+    "message": "图片加载超时，请重试"
+  },
+  "errorUnsupportedFormat": {
+    "message": "不支持的图片格式，尝试直接下载原始文件"
+  },
+  "errorGeneric": {
+    "message": "图片转换失败，请重试"
+  },
+  "notificationSaved": {
+    "message": "图片已保存"
+  },
+  "notificationFailed": {
+    "message": "保存失败"
+  }
+}

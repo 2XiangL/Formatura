@@ -1,0 +1,41 @@
+{
+  "extName": {
+    "message": "Image Format Saver"
+  },
+  "extShortName": {
+    "message": "Image Saver"
+  },
+  "extDesc": {
+    "message": "Right-click to save web images as JPG or PNG, with automatic conversion from WebP, AVIF, and other modern formats."
+  },
+  "menuParent": {
+    "message": "Save image as..."
+  },
+  "menuSaveAsJpg": {
+    "message": "Save as JPG"
+  },
+  "menuSaveAsPng": {
+    "message": "Save as PNG"
+  },
+  "errorCrossOrigin": {
+    "message": "This image is cross-origin restricted and cannot be converted"
+  },
+  "errorTaintedCanvas": {
+    "message": "Canvas is tainted, cannot export image"
+  },
+  "errorTimeout": {
+    "message": "Image loading timed out, please try again"
+  },
+  "errorUnsupportedFormat": {
+    "message": "Unsupported image format, attempting direct download"
+  },
+  "errorGeneric": {
+    "message": "Image conversion failed, please try again"
+  },
+  "notificationSaved": {
+    "message": "Image saved"
+  },
+  "notificationFailed": {
+    "message": "Save failed"
+  }
+}

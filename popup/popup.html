@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 data-i18n="popupTitle">图片格式转换保存</h1>
+    </header>
+
+    <main class="main">
+      <section class="setting-group">
+        <div class="setting-row">
+          <label class="setting-label" data-i18n="jpgQuality">JPG 质量</label>
+          <span class="setting-value" id="jpgQualityValue">92%</span>
+        </div>
+        <div class="slider-row">
+          <input type="range" id="jpgQuality" min="1" max="100" value="92" class="slider">
+        </div>
+      </section>
+
+      <section class="setting-group">
+        <label class="setting-label" data-i18n="pngCompression">PNG 压缩</label>
+        <div class="radio-group" id="pngCompression">
+          <label class="radio-item">
+            <input type="radio" name="pngCompression" value="low">
+            <span data-i18n="low">低</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="pngCompression" value="medium" checked>
+            <span data-i18n="medium">中</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="pngCompression" value="high">
+            <span data-i18n="high">高</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="setting-group">
+        <label class="setting-label" data-i18n="fileNaming">文件命名</label>
+        <div class="radio-group" id="fileNaming">
+          <label class="radio-item">
+            <input type="radio" name="fileNaming" value="original" checked>
+            <span data-i18n="originalName">原始文件名</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="fileNaming" value="timestamp">
+            <span data-i18n="timestampName">时间戳命名</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="fileNaming" value="custom">
+            <span data-i18n="customPrefix">自定义前缀</span>
+          </label>
+        </div>
+        <div class="custom-prefix-row" id="customPrefixRow" style="display:none;">
+          <input type="text" id="customPrefix" placeholder="输入前缀..." maxlength="50">
+        </div>
+      </section>
+
+      <section class="setting-group">
+        <label class="setting-label" data-i18n="language">显示语言</label>
+        <div class="radio-group" id="language">
+          <label class="radio-item">
+            <input type="radio" name="language" value="zh-CN" checked>
+            <span>中文</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="language" value="en">
+            <span>English</span>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <button type="button" class="btn-save" id="saveBtn" data-i18n="saveSettings">保存设置</button>
+      <span class="toast" id="toast"></span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
