@@ -52,7 +52,8 @@ async function loadSettings() {
   document.getElementById('jpgQuality').value = items.jpgQuality;
   document.getElementById('jpgQualityValue').textContent = `${items.jpgQuality}%`;
 
-  document.querySelector(`input[name="pngCompression"][value="${items.pngCompression}"]`).checked = true;
+  const pngRadio = document.querySelector(`input[name="pngCompression"][value="${items.pngCompression}"]`);
+  if (pngRadio) pngRadio.checked = true;
   document.querySelector(`input[name="fileNaming"][value="${items.fileNaming}"]`).checked = true;
   document.querySelector(`input[name="language"][value="${items.language}"]`).checked = true;
 
@@ -90,7 +91,7 @@ function bindEvents() {
 async function saveSettings() {
   const settings = {
     jpgQuality: parseInt(document.getElementById('jpgQuality').value, 10),
-    pngCompression: document.querySelector('input[name="pngCompression"]:checked').value,
+    pngCompression: document.querySelector('input[name="pngCompression"]:checked')?.value || 'medium',
     fileNaming: document.querySelector('input[name="fileNaming"]:checked').value,
     customPrefix: document.getElementById('customPrefix').value.trim(),
     language: document.querySelector('input[name="language"]:checked').value
