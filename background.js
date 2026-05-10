@@ -50,6 +50,8 @@ async function handleConversion(tabId, srcUrl, format) {
         showError('errorCrossOrigin');
       } else if (err.message === 'timeout') {
         showError('errorTimeout');
+      } else if (err.message === 'unsupportedFormat') {
+        showError('errorUnsupportedFormat');
       } else {
         showError('errorGeneric');
       }
@@ -84,12 +86,15 @@ async function fetchImageAsDataUrl(url) {
       if (response.status === 403 || response.status === 0) {
         throw new Error('crossOrigin');
       }
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error('httpError');
     }
 
     const contentType = response.headers.get('content-type') || '';
-    if (!contentType.startsWith('image/') && !contentType.startsWith('application/octet-stream')) {
-      throw new Error('Not an image');
+    if (contentType.startsWith('image/svg+xml')) {
+      throw new Error('unsupportedFormat');
+    }
+    if (contentType && !contentType.startsWith('image/') && contentType !== 'application/octet-stream') {
+      throw new Error('unsupportedFormat');
     }
 
     const blob = await response.blob();
@@ -98,10 +103,10 @@ async function fetchImageAsDataUrl(url) {
     if (err.name === 'AbortError') {
       throw new Error('timeout');
     }
-    if (err.message === 'crossOrigin' || err.message === 'timeout') {
+    if (err.message === 'crossOrigin' || err.message === 'timeout' || err.message === 'httpError' || err.message === 'unsupportedFormat') {
       throw err;
     }
-    throw new Error('crossOrigin');
+    throw new Error('networkError');
   } finally {
     clearTimeout(timeoutId);
   }
@@ -124,5 +129,5 @@ async function showError(msgKey) {
     title: chrome.i18n.getMessage('extName'),
     message: msg,
     priority: 2
-  }).catch(() => {});
+  }).catch(err => { console.warn('Notification failed:', err); });
 }

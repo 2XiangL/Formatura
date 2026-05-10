@@ -1,6 +1,7 @@
 const LOAD_TIMEOUT_MS = 10000;
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (sender.id !== chrome.runtime.id) return;
   if (message.action === 'convert') {
     handleConversion(message.imageData, message.format, message.srcUrl)
       .then(result => sendResponse(result))
@@ -161,8 +162,13 @@ function triggerDownload(blob, filename) {
   document.body.appendChild(anchor);
   anchor.click();
 
-  requestAnimationFrame(() => {
-    document.body.removeChild(anchor);
+  let cleaned = false;
+  const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
+    anchor.remove();
     URL.revokeObjectURL(url);
-  });
+  };
+  requestAnimationFrame(cleanup);
+  setTimeout(cleanup, 1000);
 }

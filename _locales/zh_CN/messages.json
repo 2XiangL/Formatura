@@ -31,11 +31,5 @@
   },
   "errorGeneric": {
     "message": "图片转换失败，请重试"
-  },
-  "notificationSaved": {
-    "message": "图片已保存"
-  },
-  "notificationFailed": {
-    "message": "保存失败"
   }
 }
